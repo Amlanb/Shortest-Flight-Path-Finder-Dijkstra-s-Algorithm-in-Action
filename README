@@ -1,0 +1,66 @@
+# Shortest Flight Path Finder: Dijkstra's Algorithm in Action
+
+## Hi, I am Amlan 👋
+
+Welcome to my project, **Shortest Flight Path Finder**! I built this to explore and visualize how Dijkstra's algorithm can be used to find the most efficient flight routes between airports. This project combines real-world airport data with graph theory to determine the shortest path, considering distances between airports.
+
+## Purpose
+
+I've always been fascinated by how navigation systems work, especially in aviation. I wanted to create a practical application of graph algorithms. My main goal was to:
+
+*   **Learn and Implement Dijkstra's Algorithm:** Gain a deeper understanding of this classic algorithm by implementing it from scratch (or using a library implementation).
+*   **Visualize Flight Routing:** Create a visual representation of the shortest flight path on a graph, making it easy to understand the route.
+*   **Use Real-World Data:** Work with a real-world dataset of airports and their locations to make the project relevant and interesting.
+*   **Explore Emergency Diversion Options:** Determine the alternative airports to land on based on runway length criteria.
+
+## Project Explanation
+
+Here's a breakdown of how the project works:
+
+1.  **Data Acquisition:**
+    *   I used the airport, runway, and country datasets from [OurAirports](https://ourairports.com/data/). OurAirports provides open and shareable aviation data.
+    *   The airport data includes IATA codes, latitudes, and longitudes.
+    *   The runway data includes runway length, which I used to determine suitable alternative airports in case of emergencies.
+
+2.  **Graph Creation:**
+    *   I created a graph where each airport is a node, and the connections (edges) between airports represent possible flight paths.
+    *   The weight of each edge is the distance between the two airports, calculated using the Haversine formula (which accounts for the Earth's curvature).
+    *   To connect airports, I used a KDTree to efficiently find the nearest neighbors for each airport. This avoids creating a fully connected graph, which would be computationally expensive.
+
+3.  **Dijkstra's Algorithm Implementation:**
+    *   I used the `networkx` library for graph manipulation and its built-in Dijkstra's algorithm implementation to find the shortest path between a source and destination airport.
+    *   The algorithm calculates the shortest path based on the distances (weights) between airports.
+
+4.  **Shortest Path Calculation:**
+    *   I implemented a function `find_shortest_path` that uses Dijkstra's algorithm to find the shortest path and its total distance between two specified airports (e.g., JFK to LAX).
+
+5.  **Emergency Airport Identification:**
+    *   I created a function `find_alternate_airports` that identifies suitable alternate airports based on a minimum runway length criteria.
+
+6.  **Visualization:**
+    *   I used `matplotlib` to visualize the airport network, highlighting the shortest path in blue and the source/destination airports.
+    *   I also displayed the alternative airports in case of emergency.
+
+### Key Libraries Used:
+
+*   `pandas`: For data manipulation and loading the datasets.
+*   `networkx`: For creating and working with graphs, including finding shortest paths.
+*   `matplotlib`: For visualizing the graph and shortest path.
+*   `haversine`: For calculating distances between airports (lat/lon coordinates).
+*   `scipy.spatial.KDTree`: For efficient nearest neighbor searches.
+
+## Conclusion
+
+Through this project, I successfully applied Dijkstra's algorithm to find the shortest flight path between airports. I also gained valuable experience in:
+
+*   Working with real-world datasets.
+*   Implementing graph algorithms.
+*   Visualizing complex data.
+
+This project could be further extended by:
+
+*   Incorporating real-time weather data to avoid storms or turbulent areas.
+*   Considering air traffic congestion.
+*   Adding more sophisticated cost functions (e.g., fuel consumption, flight time).
+
+I hope you find this project interesting and informative! Feel free to explore the code and contribute if you have any ideas for improvement.
